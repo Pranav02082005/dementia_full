@@ -4,7 +4,7 @@ import { Card } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
-const BUTTON_SIZE = width * 0.4;
+const BUTTON_SIZE = width * 0.35;
 const colors = ['#e74c3c', '#2ecc71', '#3498db', '#f1c40f'];
 
 export default function App() {
@@ -66,7 +66,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       {/* Header with Back Button */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.push('/memories')}>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.push('/(tabs)/memories')}>
           <Text style={styles.arrow}>←</Text>
         </TouchableOpacity>
         <Text style={styles.title}>
@@ -83,31 +83,35 @@ export default function App() {
       {/* Game Board */}
       <Card style={styles.card}>
         <View style={styles.gameContainer}>
-          <View style={styles.grid}>
-            {colors.map((color, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[
-                  styles.button,
-                  { backgroundColor: color },
-                  highlightedIndex === index && styles.highlightedButton
-                ]}
-                onPress={() => handleButtonPress(index)}
-                disabled={gameOver}
-              />
-            ))}
+          <View style={styles.gridContainer}>
+            <View style={styles.grid}>
+              {colors.map((color, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={[
+                    styles.button,
+                    { backgroundColor: color },
+                    highlightedIndex === index && styles.highlightedButton
+                  ]}
+                  onPress={() => handleButtonPress(index)}
+                  disabled={gameOver}
+                />
+              ))}
+            </View>
           </View>
 
-          <TouchableOpacity
-            style={styles.startButton}
-            onPress={startGame}
-            disabled={started && !gameOver}>
-            <Text style={styles.buttonText}>
-              {started && !gameOver ? 'Playing...' : 'Start Game'}
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.controlsContainer}>
+            <TouchableOpacity
+              style={styles.startButton}
+              onPress={startGame}
+              disabled={started && !gameOver}>
+              <Text style={styles.buttonText}>
+                {started && !gameOver ? 'Playing...' : 'Start Game'}
+              </Text>
+            </TouchableOpacity>
 
-          <Text style={styles.scoreText}>Score: {score}</Text>
+            <Text style={styles.scoreText}>Score: {score}</Text>
+          </View>
         </View>
       </Card>
     </SafeAreaView>
@@ -120,12 +124,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1',
   },
   header: {
-    paddingTop:28,
-    paddingLeft:0,
-    paddingRight:33,
+    paddingTop: 28,
+    paddingLeft: 0,
+    paddingRight: 30,
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
+    backgroundColor: '#ffffff',
   },
   backButton: {
     marginRight: 10,
@@ -139,6 +144,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: '#2c3e50',
   },
   description: {
     marginHorizontal: 24,
@@ -150,35 +156,53 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     margin: 8,
+    backgroundColor: 'white',
   },
   gameContainer: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     padding: 16,
+  },
+  gridContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    maxHeight: 280,
   },
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: width * 0.85,
   },
   button: {
     width: BUTTON_SIZE,
     height: BUTTON_SIZE,
     borderRadius: BUTTON_SIZE / 2.8,
-    margin: 8,
+    margin: 10,
   },
   highlightedButton: {
     opacity: 0.5,
     transform: [{ scale: 0.95 }],
   },
+  controlsContainer: {
+    marginTop: 30,
+    marginBottom: 20,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+  },
   startButton: {
-    alignItems: 'center' ,
-    width:200,
-    height:50,
+    alignItems: 'center',
+    width: 200,
+    height: 50,
     backgroundColor: 'black',
     padding: 15,
     borderRadius: 10,
     alignSelf: 'center',
+    marginBottom: 20,
   },
   buttonText: {
     color: 'white',
@@ -186,8 +210,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   scoreText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginTop: 10,
+    color: '#2c3e50',
   },
 });

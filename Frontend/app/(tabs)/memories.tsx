@@ -94,7 +94,7 @@ function MemoriesScreen() {
 
   // Navigate to specific memory game
   const navigateToMemoryGame = (gameId) => {
-    router.push(`/memorygame${gameId}`);
+    router.push(`/(tabs)/memorygame${gameId}`);
   };
 
   // Show a simple loading state if not ready
@@ -182,34 +182,6 @@ function MemoriesScreen() {
       
       {/* Add bottom spacing to account for fixed tab bar */}
       <View style={{ height: 80 }} />
-
-      {/* Fixed Tab Bar */}
-      <View style={styles.fixedTabBar}>
-        <TabBarItem
-          icon={<HouseIcon color="#6B6B6B" />}
-          label="Home"
-          isActive={false}
-          onPress={() => router.push('/')}
-        />
-        <TabBarItem
-          icon={<BellIcon color="#6B6B6B" />}
-          label="Reminders"
-          isActive={false}
-          onPress={() => router.push('/reminders')}
-        />
-        <TabBarItem
-          icon={<CameraIcon color="#000" />}
-          label="Memory"
-          isActive={true}
-          onPress={() => router.push('/memories')}
-        />
-        <TabBarItem
-          icon={<QuestionIcon color="#6B6B6B" />}
-          label="Help"
-          isActive={false}
-          onPress={() => router.push('/help')}
-        />
-      </View>
     </SafeAreaView>
   );
 }
@@ -306,37 +278,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  fixedTabBar: {
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    borderTopColor: '#EEEEEE',
-    paddingVertical: 8,
-    backgroundColor: '#FFFFFF',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-  },
-  tabBarItem: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 4,
-  },
-  tabBarLabel: {
-    fontFamily: 'System',
-    fontSize: 12,
-    color: '#6B6B6B',
-    marginTop: 4,
-  },
-  tabBarLabelActive: {
-    color: '#000',
   },
 });
 

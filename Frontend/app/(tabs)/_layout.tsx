@@ -67,6 +67,50 @@ export default function TabLayout() {
           ),
         }}
       />
+      
+      {/* Memory games - hidden from tab bar */}
+      <Tabs.Screen
+        name="memorygame2"
+        options={{
+          headerShown: false,
+          tabBarItemStyle: { display: 'none' },
+        }}
+      />
+      <Tabs.Screen
+        name="memorygame3"
+        options={{
+          headerShown: false,
+          tabBarItemStyle: { display: 'none' },
+        }}
+      />
+      <Tabs.Screen
+        name="memorygame4"
+        options={{
+          headerShown: false,
+          tabBarItemStyle: { display: 'none' },
+        }}
+      />
+      <Tabs.Screen
+        name="exercises"
+        options={{
+          headerShown: false,
+          tabBarItemStyle: { display: 'none' },
+        }}
+      />
+      <Tabs.Screen
+        name="addReminder"
+        options={{
+          headerShown: false,
+          tabBarItemStyle: { display: 'none' },
+        }}
+      />
+      <Tabs.Screen
+        name="memorygame1"
+        options={{
+          headerShown: false,
+          tabBarItemStyle: { display: 'none' },
+        }}
+      />
     </Tabs>
   );
 }
