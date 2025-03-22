@@ -110,32 +110,32 @@ function MemoriesScreen() {
 
   // Get current day and location - in a real app you'd use geolocation services
   const day = new Date().toLocaleDateString('en-US', { weekday: 'long' });
-  const location = "San Francisco"; // This would come from the device location
+  const location = "Bengaluru"; // This would come from the device location
 
   // Memory exercise data
   const memoryExercises = [
     {
       id: 1,
-      title: "Memory Game 1",
-      description: "Test your memory with this recall exercise",
+      title: "Super Sequence",
+      description: "Challenge yourself with sequence repetition",
       imageUrl: "https://cdn.usegalileo.ai/sdxl10/aeaadefa-1f66-45a6-b563-c6fc59420dd6.png"
     },
     {
       id: 2,
-      title: "Memory Game 2",
-      description: "Practice recall of recent events or conversations",
+      title: "Jumbled Jumbo",
+      description: "Test your cognitive abilities with this word game",
       imageUrl: "https://cdn.usegalileo.ai/sdxl10/abdd5a60-29e2-4895-ae5f-e2d1c2cbbacc.png"
     },
     {
       id: 3,
-      title: "Memory Game 3",
-      description: "Challenge yourself with sequence repetition",
+      title: "Memory Mystery",
+      description: "Test your memory with this recall exercise",
       imageUrl: "https://cdn.usegalileo.ai/sdxl10/791bebc2-2348-48fc-ae60-2cfeb143ca83.png"
     },
     {
       id: 4,
-      title: "Memory Game 4",
-      description: "Associate names with faces in this recognition game",
+      title: "Retro Recall",
+      description: "Lets test your medium to long term memory",
       imageUrl: "https://cdn.usegalileo.ai/sdxl10/e256d9bb-365d-4826-ac42-42e30150c50d.png"
     }
   ];
@@ -149,7 +149,7 @@ function MemoriesScreen() {
         <TouchableOpacity>
           <ListIcon color="#000" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Hello Mark</Text>
+        <Text style={styles.headerTitle}>Memory Games</Text>
         <TouchableOpacity>
           <GearIcon color="#000" />
         </TouchableOpacity>
@@ -217,14 +217,14 @@ const styles = StyleSheet.create({
   headerTitle: {
     flex: 1,
     fontFamily: 'System',
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#000',
   },
   dateLocation: {
     fontFamily: 'System',
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     paddingHorizontal: 16,
     paddingTop: 20,

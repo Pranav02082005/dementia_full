@@ -278,7 +278,7 @@ const GalileoDesign = () => {
   // Get current day and location
   const today = new Date();
   const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' });
-  const location = "San Francisco"; // This would be dynamic in a real app
+  const location = "Bengaluru"; // This would be dynamic in a real app
 
   // Add function to launch external app
   const launchARAssistanceApp = async () => {
@@ -382,7 +382,7 @@ const GalileoDesign = () => {
             <View style={styles.iconContainer}>
               <ListIcon color={colors.icon} />
             </View>
-            <Text style={[styles.headerTitle, { color: colors.text }]}>Hello Mark</Text>
+            <Text style={[styles.headerTitle, { color: colors.text }]}>MemoAR</Text>
             <View style={styles.headerRightContainer}>
               <TouchableOpacity 
                 style={[styles.themeToggleButton, { backgroundColor: isDarkMode ? '#FFFFFF' : '#000000' }]} 
@@ -527,13 +527,15 @@ const styles = StyleSheet.create({
   headerTitle: {
     flex: 1,
     fontFamily: 'System',
-    fontSize: 18,
+    fontSize: 26,
+    left: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
     letterSpacing: -0.3,
   },
   todayText: {
     fontFamily: 'System',
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     paddingHorizontal: 16,
     paddingTop: 20,
