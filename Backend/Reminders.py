@@ -36,13 +36,12 @@ def update_reminder(reminder_id, is_completed):
         ref.delete()
 
 #Checking reminder
-"""
+
 def check_reminders():
     try:
         # Getting the current date and time
         now = datetime.now()
         current_date = now.strftime("%Y-%m-%d")
-        current_time = now.strftime("%H:%M")
 
         # Fetching all reminders from the database
         reminders_ref = db.reference('reminders')
@@ -52,15 +51,14 @@ def check_reminders():
             for reminder in reminders.items():
                 print(f'\n{reminder[-1]}\n')
                 reminder_date = reminder[-1].get('date')
-                reminder_time = reminder[-1].get('time')
 
                 # Check if the reminder is due
-                if reminder_date == current_date and reminder_time == current_time:
+                if reminder_date == current_date:
                     send_notification(reminder[-1])
 
     except Exception as e:
         print(f"Error checking reminders: {e}")
-"""
+
 
 #For gmail (It is not working because gmail doesnt allow less secure apps to login)
 """
@@ -97,7 +95,7 @@ def send_notification(reminder):
 """
 
 #For app notifications (Need to write code for getting FCM token)
-"""
+
 from firebase_admin import messaging
 def send_notification(reminder):
     # Creating a notification message
@@ -116,4 +114,3 @@ def send_notification(reminder):
     except Exception as e:
         print(f"Error sending push notification: {e}")
         
-"""
