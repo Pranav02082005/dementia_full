@@ -187,13 +187,13 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     transform: [{ scale: 0.95 }],
   },
-  controlsContainer: {
+ /* controlsContainer: {
     marginTop: 30,
     marginBottom: 20,
     paddingTop: 20,
     borderTopWidth: 1,
     borderTopColor: '#eee',
-  },
+  },*/
   startButton: {
     alignItems: 'center',
     width: 200,
@@ -202,7 +202,15 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignSelf: 'center',
-    marginBottom: 20,
+    marginBottom: 0,
+    position: 'absolute', // Enables precise positioning
+    top: 375, // Distance from top of parent
+    bottom: 20, // Distance from bottom of parent
+    left: 60, // Distance from left edge
+    right: 30, // Distance from right edge
+    marginTop: 40, // Vertical margin
+    marginLeft: 20, // Horizontal margin
+    transform: [{ translateY: -50 }], // Vertical adjustment
   },
   buttonText: {
     color: 'white',

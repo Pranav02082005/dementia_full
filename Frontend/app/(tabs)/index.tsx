@@ -534,7 +534,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   helpButton: {
-    height: 56,
+    height: 40,
+    bottom:7,
     borderRadius: 28,
     justifyContent: 'center',
     alignItems: 'center',

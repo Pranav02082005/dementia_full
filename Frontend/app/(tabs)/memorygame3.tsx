@@ -195,7 +195,8 @@ const styles = StyleSheet.create({
   startButton: {
     alignItems: 'center',
     width: 200,
-    height: 50,
+    height: 60,
+    top:30,
     backgroundColor: 'black',
     padding: 15,
     borderRadius: 10,

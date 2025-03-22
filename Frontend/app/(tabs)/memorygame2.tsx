@@ -255,14 +255,16 @@ const styles = StyleSheet.create({
     letterSpacing: 4,
     minHeight: 30,
   },
-  controlsContainer: {
+  /*controlsContainer: {
     marginTop: 20,
     paddingTop: 15,
     borderTopWidth: 1,
     borderTopColor: '#eee',
-  },
+  },*/
   startButton: {
     backgroundColor: 'black',
+    height:50,
+    top: 200,
     padding: 15,
     borderRadius: 10,
     marginHorizontal: 40,

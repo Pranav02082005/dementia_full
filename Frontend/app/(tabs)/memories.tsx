@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontSize: 16,
     color: '#6B6B6B',
-  },
+  },/*
   floatingButtonContainer: {
     alignItems: 'flex-end',
     paddingHorizontal: 20,
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  },*/
 });
 
 // Simple error boundary component

@@ -648,6 +648,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: '700',
+    left:18,
     flex: 1,
     textAlign: 'center',
   },

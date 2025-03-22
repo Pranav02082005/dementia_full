@@ -91,6 +91,18 @@ const AddTaskScreen = ({ visible, onClose, onAddTask }: AddTaskScreenProps) => {
   const [minute, setMinute] = useState('30');
   const [period, setPeriod] = useState('AM');
 
+  // Generate hours array with all 24 hours
+  const hours = Array.from({ length: 12 }, (_, i) => {
+    const hourNum = i+1;
+    return hourNum < 10 ? `0${hourNum}` : `${hourNum}`;
+  });
+
+  // Generate minutes array with 5-minute increments
+  const minutes = Array.from({ length: 12 }, (_, i) => {
+    const minuteNum = i * 5;
+    return minuteNum < 10 ? `0${minuteNum}` : `${minuteNum}`;
+  });
+
   // Date state - default to today
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState(today);
@@ -264,27 +276,59 @@ const AddTaskScreen = ({ visible, onClose, onAddTask }: AddTaskScreenProps) => {
 
           {/* Time Selector */}
           <Text style={styles.sectionTitle}>Time</Text>
-          <View style={styles.timeContainer}>
+          
+          {/* Time selectors container */}
+          <View style={styles.timeSelectorsContainer}>
             {/* Hours */}
-            <TimeSelector
-              options={['05', '06', '07', '08', '09', '10', '11', '12']}
-              selectedValue={hour}
-              onSelect={setHour}
-            />
+            <View style={styles.timeColumnContainer}>
+              <Text style={styles.timeLabel}>Hour</Text>
+              <View style={styles.timeScrollView}>
+                <ScrollView 
+                  showsVerticalScrollIndicator={true}
+                  nestedScrollEnabled={true}
+                >
+                  <TimeSelector
+                    options={hours}
+                    selectedValue={hour}
+                    onSelect={setHour}
+                  />
+                </ScrollView>
+              </View>
+            </View>
 
             {/* Minutes */}
-            <TimeSelector
-              options={['00', '15', '30', '45']}
-              selectedValue={minute}
-              onSelect={setMinute}
-            />
+            <View style={styles.timeColumnContainer}>
+              <Text style={styles.timeLabel}>Minute</Text>
+              <View style={styles.timeScrollView}>
+                <ScrollView 
+                  showsVerticalScrollIndicator={true}
+                  nestedScrollEnabled={true}
+                >
+                  <TimeSelector
+                    options={minutes}
+                    selectedValue={minute}
+                    onSelect={setMinute}
+                  />
+                </ScrollView>
+              </View>
+            </View>
 
             {/* AM/PM */}
-            <TimeSelector
-              options={['AM', 'PM']}
-              selectedValue={period}
-              onSelect={setPeriod}
-            />
+            <View style={styles.timeColumnContainer}>
+              <Text style={styles.timeLabel}>Period</Text>
+              <View style={styles.timeScrollView}>
+                <ScrollView 
+                  showsVerticalScrollIndicator={true}
+                  nestedScrollEnabled={true}
+                >
+                  <TimeSelector
+                    options={['AM', 'PM']}
+                    selectedValue={period}
+                    onSelect={setPeriod}
+                  />
+                </ScrollView>
+              </View>
+            </View>
           </View>
 
           {/* Notes Input */}
@@ -404,19 +448,47 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     color: 'black',
   },
+  timeSelectorsContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  timeColumnContainer: {
+    flex: 1,
+    marginHorizontal: 4,
+  },
+  timeScrollView: {
+    height: 150,
+    borderWidth: 1,
+    borderColor: '#DEDEDE',
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  timeScrollContent: {
+    paddingVertical: 10,
+  },
+  timeScrollContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 150,
+  },
   timeContainer: {
     flexDirection: 'row',
     paddingHorizontal: 16,
     paddingVertical: 4,
+    height: 30,
   },
   timeGroup: {
-    flex: 1,
+    paddingVertical: 5,
   },
   timeOption: {
-    height: 44,
+    height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 16,
+    marginVertical: 2,
+    borderRadius: 4,
   },
   timeOptionSelected: {
     backgroundColor: '#EEEEEE',
@@ -482,6 +554,12 @@ const styles = StyleSheet.create({
   },
   bottomPadding: {
     height: 80,
+  },
+  timeLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
+    marginBottom: 5,
   },
 });
 

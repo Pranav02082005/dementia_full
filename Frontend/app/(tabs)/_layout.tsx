@@ -67,7 +67,16 @@ export default function TabLayout() {
           ),
         }}
       />
-      
+      <Tabs.Screen
+        name="people"
+        options={{
+          headerShown: false, // Hide header for Help
+          title: 'People',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people-outline" size={size} color={color} />
+          ),
+        }}
+      />
       {/* Memory games - hidden from tab bar */}
       <Tabs.Screen
         name="memorygame2"
