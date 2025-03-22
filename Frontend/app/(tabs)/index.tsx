@@ -9,7 +9,9 @@ import {
   ScrollView,
   StatusBar,
   Platform,
-  Animated
+  Animated,
+  Linking,
+  Alert
 } from 'react-native';
 import { useFonts } from 'expo-font';
 import Svg, { Path } from 'react-native-svg';
@@ -278,6 +280,84 @@ const GalileoDesign = () => {
   const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' });
   const location = "San Francisco"; // This would be dynamic in a real app
 
+  // Add function to launch external app
+  const launchARAssistanceApp = async () => {
+    try {
+      // For Android APK, we need to try multiple approaches
+      const appPackageName = "com.urvi_all_you"; // Replace with the actual package name of the APK
+      const appScheme = "urvi_all_you://";
+      
+      // Determine if running on Android
+      const isAndroid = Platform.OS === 'android';
+      
+      if (isAndroid) {
+        // Try package-specific intent for Android
+        const intentUrl = `intent://scan/#Intent;scheme=urvi_all_you;package=${appPackageName};end`;
+        const packageUrl = `package:${appPackageName}`;
+        
+        // Try different launch methods in sequence
+        try {
+          // First try standard URL scheme
+          const isSupported = await Linking.canOpenURL(appScheme);
+          if (isSupported) {
+            await Linking.openURL(appScheme);
+            return;
+          }
+        } catch (e) {
+          console.log("Standard URL scheme failed:", e);
+        }
+        
+        try {
+          // Then try package URL (may open Play Store if available)
+          const isPackageSupported = await Linking.canOpenURL(packageUrl);
+          if (isPackageSupported) {
+            await Linking.openURL(packageUrl);
+            return;
+          }
+        } catch (e) {
+          console.log("Package URL failed:", e);
+        }
+        
+        try {
+          // Then try intent URL
+          const isIntentSupported = await Linking.canOpenURL(intentUrl);
+          if (isIntentSupported) {
+            await Linking.openURL(intentUrl);
+            return;
+          }
+        } catch (e) {
+          console.log("Intent URL failed:", e);
+        }
+        
+        // If all the above methods fail, show a more detailed error message
+        Alert.alert(
+          "Can't Launch App",
+          "Due to Expo Go limitations, the AR Assistance app can't be directly launched. You may need to exit Expo Go and open the urvi_all_you app manually.",
+          [{ text: "OK" }]
+        );
+      } else {
+        // For iOS, try the standard URL scheme
+        const isSupported = await Linking.canOpenURL(appScheme);
+        if (isSupported) {
+          await Linking.openURL(appScheme);
+        } else {
+          Alert.alert(
+            "App Not Found",
+            "The AR Assistance app is not installed on your device.",
+            [{ text: "OK" }]
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Failed to open AR Assistance app:", error);
+      Alert.alert(
+        "Launch Information",
+        "If you have the AR Assistance app installed, please exit Expo Go and launch it directly from your home screen.",
+        [{ text: "OK" }]
+      );
+    }
+  };
+
   // Show a simple loading state if not ready
   if (!isReady && Platform.OS === 'android') {
     return (
@@ -387,9 +467,10 @@ const GalileoDesign = () => {
           <View style={styles.helpButtonContainer}>
             <TouchableOpacity 
               style={[styles.helpButton, { backgroundColor: colors.primaryButton }]}
+              onPress={launchARAssistanceApp}
             >
               <Text style={[styles.helpButtonText, { color: colors.primaryButtonText }]}>
-                Help
+                AR Assistance
               </Text>
             </TouchableOpacity>
           </View>
